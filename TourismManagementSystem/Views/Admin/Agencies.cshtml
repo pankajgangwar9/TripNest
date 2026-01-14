@@ -1,0 +1,47 @@
+﻿@model IEnumerable<TourismManagementSystem.Models.Business.Agency>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Agencies</h2>
+
+<table class="table table-bordered">
+    <tr class="table-dark">
+        <th>Name</th>
+        <th>Description</th>
+        <th>Contact</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var a in Model)
+    {
+        <tr>
+            <td>@a.AgencyName</td>
+            <td>@a.Description</td>
+            <td>@a.ContactNumber</td>
+            <td>
+                @if (a.IsApproved)
+                {
+                    <span class="badge bg-success">Approved</span>
+                }
+                else
+                {
+                    <span class="badge bg-warning">Pending</span>
+                }
+            </td>
+            <td>
+                @if (!a.IsApproved)
+                {
+                    <a href="@Url.Action("ApproveAgency","Admin", new { id = a.AgencyId })"
+                       class="btn btn-success btn-sm">Approve</a>
+                }
+                else
+                {
+                    <a href="@Url.Action("RejectAgency","Admin", new { id = a.AgencyId })"
+                       class="btn btn-danger btn-sm">Block</a>
+                }
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,17 @@
+﻿@model TourismManagementSystem.Models.Business.TourPackage
+
+<h2>Confirm Booking</h2>
+
+<p>
+    <b>Tour:</b> @Model.Title <br />
+    <b>Price:</b> ₹@Model.Price <br />
+    <b>Duration:</b> @Model.DurationDays days
+</p>
+
+@using (Html.BeginForm("Confirm", "Booking"))
+{
+    @Html.Hidden("tourPackageId", Model.TourPackageId)
+    <button type="submit" class="btn btn-success">
+        Confirm Booking
+    </button>
+}

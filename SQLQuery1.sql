@@ -1,0 +1,2 @@
+﻿ALTER TABLE dbo.AspNetUsers
+ADD ProfileImage NVARCHAR(256) NULL;

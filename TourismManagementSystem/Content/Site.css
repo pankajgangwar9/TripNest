@@ -1,0 +1,127 @@
+﻿/* ===============================
+   TripNest – Global UI System
+   =============================== */
+
+body {
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+}
+
+/* Navbar */
+.navbar {
+    background: #1f2933;
+}
+
+.navbar-brand {
+    font-weight: 700;
+    color: #0d6efd !important;
+}
+
+.nav-link {
+    color: #fff !important;
+    font-weight: 500;
+}
+
+    .nav-link:hover {
+        color: #0d6efd !important;
+    }
+
+/* Buttons */
+.btn-main {
+    background: linear-gradient(135deg, #0d6efd, #198754);
+    color: white;
+    border-radius: 30px;
+    padding: 12px 30px;
+    border: none;
+    font-weight: 600;
+}
+
+/* ===============================
+   HERO CAROUSEL
+   =============================== */
+
+.hero-wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+.hero-carousel,
+.carousel-item {
+    height: 380px;
+}
+
+    .hero-carousel img {
+        width: 100%;
+        height: 380px;
+        object-fit: cover;
+    }
+@media (max-width: 768px) {
+    .hero-carousel,
+    .carousel-item,
+    .hero-carousel img {
+        height: 260px;
+    }
+}
+
+    /* Overlay */
+    .hero-carousel .carousel-item::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+    }
+
+.hero-overlay {
+    position: absolute;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+}
+
+    .hero-overlay h1 {
+        font-size: 3rem;
+        font-weight: 700;
+    }
+
+/* ===============================
+   DESTINATION CARDS
+   =============================== */
+
+.destination-card {
+    border-radius: 15px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+    .destination-card:hover {
+        transform: translateY(-8px);
+    }
+
+    .destination-card img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+    }
+
+.destination-info {
+    padding: 15px;
+    text-align: center;
+}
+
+/* ===============================
+   FEATURE CARDS
+   =============================== */
+
+.feature-card {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}

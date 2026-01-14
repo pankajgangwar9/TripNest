@@ -1,0 +1,45 @@
+﻿@model IEnumerable<TourismManagementSystem.Models.Business.Booking>
+@using TourismManagementSystem.Models.Business
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="mb-4">All Bookings</h2>
+
+<div class="card shadow-sm">
+    <table class="table table-bordered align-middle">
+        <thead class="table-dark">
+            <tr>
+                <th>Tour</th>
+                <th>User</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var b in Model)
+            {
+                <tr>
+                    <td>@b.TourPackage.Title</td>
+                    <td>@b.UserId</td>
+                    <td>@b.BookingDate.ToShortDateString()</td>
+                    <td>
+                        @if (b.Status == BookingStatus.Pending)
+                        {
+                            <span class="badge bg-warning">Pending</span>
+                        }
+                        else if (b.Status == BookingStatus.Confirmed)
+                        {
+                            <span class="badge bg-success">Approved</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Rejected</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

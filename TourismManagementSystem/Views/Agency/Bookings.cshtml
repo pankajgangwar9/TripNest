@@ -1,0 +1,36 @@
+﻿@model IEnumerable<TourismManagementSystem.Models.Business.Booking>
+
+<h2 class="page-title">Tour Bookings</h2>
+
+<table class="table table-hover shadow">
+    <tr class="table-dark">
+        <th>Tour</th>
+        <th>Tourist</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var b in Model)
+    {
+        <tr>
+            <td>@b.TourPackage.Title</td>
+            <td>@b.UserId</td>
+            <td>@b.BookingDate.ToShortDateString()</td>
+
+            <td>
+                <span class="status @b.Status.ToString().ToLower()">
+                    @b.Status
+                </span>
+            </td>
+
+            <td>
+                @if (b.Status == TourismManagementSystem.Models.Business.BookingStatus.Pending)
+                {
+                    <a href="/Agency/ApproveBooking/@b.BookingId" class="btn btn-success btn-sm">Approve</a>
+                    <a href="/Agency/CancelBooking/@b.BookingId" class="btn btn-danger btn-sm">Reject</a>
+                }
+            </td>
+        </tr>
+    }
+</table>

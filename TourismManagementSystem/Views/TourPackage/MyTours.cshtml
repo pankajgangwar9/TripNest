@@ -1,0 +1,23 @@
+﻿@model IEnumerable<TourismManagementSystem.Models.Business.TourPackage>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>My Tour Packages</h2>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Price</th>
+        <th>Duration</th>
+    </tr>
+
+    @foreach (var t in Model)
+    {
+        <tr>
+            <td>@t.Title</td>
+            <td>@t.Price</td>
+            <td>@t.DurationDays days</td>
+        </tr>
+    }
+</table>

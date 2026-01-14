@@ -1,0 +1,50 @@
+﻿@model TourismManagementSystem.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="card-ui col-md-6 mx-auto mt-5">
+
+    <h2 class="text-center mb-4">Create Account</h2>
+
+    @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.Email)
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        </div>
+
+        <div class="mb-3">
+            @Html.LabelFor(m => m.ConfirmPassword)
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Register As</label><br />
+            <div class="form-check form-check-inline">
+                @Html.RadioButtonFor(m => m.Role, "Tourist", new { @class = "form-check-input", id = "tourist" })
+                <label class="form-check-label" for="tourist">Tourist</label>
+            </div>
+            <div class="form-check form-check-inline">
+                @Html.RadioButtonFor(m => m.Role, "Agency", new { @class = "form-check-input", id = "agency" })
+                <label class="form-check-label" for="agency">Travel Agency</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-main w-100">Register</button>
+    }
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

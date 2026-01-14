@@ -1,0 +1,28 @@
+﻿@model TourismManagementSystem.Models.Business.Agency
+@{
+    ViewBag.Title = "Create Agency";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Agency Profile</h2>
+
+@using (Html.BeginForm())
+{
+    <div>
+        @Html.LabelFor(m => m.AgencyName)
+        @Html.TextBoxFor(m => m.AgencyName, new { @class = "form-control" })
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Description)
+        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.ContactNumber)
+        @Html.TextBoxFor(m => m.ContactNumber, new { @class = "form-control" })
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-primary">Create Agency</button>
+}

@@ -1,0 +1,25 @@
+﻿@model TourismManagementSystem.Models.Business.Booking
+
+<h2>Pay for @Model.TourPackage.Title</h2>
+
+<p><b>Amount:</b> ₹@Model.TourPackage.Price</p>
+
+@using (Html.BeginForm("Pay", "Payment", FormMethod.Post))
+{
+    @Html.Hidden("bookingId", Model.BookingId)
+
+    <div class="form-group">
+        <label>Payment Method</label>
+        <select name="paymentMethod" class="form-control" required>
+            <option value="">-- Select Payment Method --</option>
+            <option value="UPI">UPI</option>
+            <option value="Card">Card</option>
+            <option value="NetBanking">Net Banking</option>
+        </select>
+    </div>
+
+    <br />
+    <button type="submit" class="btn btn-success">
+        Pay Now
+    </button>
+}

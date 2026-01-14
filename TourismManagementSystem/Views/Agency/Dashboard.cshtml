@@ -1,0 +1,27 @@
+﻿@model TourismManagementSystem.Models.Business.Agency
+
+@if (Model == null)
+{
+    <h3>No agency profile found.</h3>
+    <a href="/Agency/Create" class="btn btn-primary">Create Agency Profile</a>
+    return;
+}
+
+@{
+    ViewBag.Title = "Agency Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.AgencyName</h2>
+
+<p><b>Description:</b> @Model.Description</p>
+<p><b>Contact:</b> @Model.ContactNumber</p>
+
+<hr />
+
+<a href="/TourPackage/Create" class="btn btn-success">
+    Create Tour Package
+</a>
+<a href="/Agency/Bookings" class="btn btn-primary">
+    View Bookings
+</a>

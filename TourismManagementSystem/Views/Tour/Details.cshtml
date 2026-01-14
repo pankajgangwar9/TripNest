@@ -1,0 +1,16 @@
+﻿@model TourismManagementSystem.Models.Business.TourPackage
+
+<h2>@Model.Title</h2>
+
+<p>@Model.Description</p>
+
+<ul>
+    <li><b>Price:</b> ₹@Model.Price</li>
+    <li><b>Duration:</b> @Model.DurationDays days</li>
+    <li><b>Max Group:</b> @Model.MaxGroupSize</li>
+    <li><b>Agency:</b> @Model.Agency.AgencyName</li>
+</ul>
+
+<a href="/Booking/Create/@Model.TourPackageId" class="btn btn-success">
+    Book This Tour
+</a>

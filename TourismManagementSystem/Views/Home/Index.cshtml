@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+<div class="container mt-4">
+    <div class="hero-wrapper">
+        <div id="heroCarousel" class="carousel slide carousel-fade hero-carousel rounded-4 overflow-hidden" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/Content/images/slide1.jpg" class="d-block w-100 img-fluid" alt="Beach view">
+                    <div class="hero-overlay">
+                        <h1>Explore the world with TripNest 🌍</h1>
+                        <p>Discover beaches & ocean adventures</p>
+                        <a href="/Tour/Index" class="btn btn-main">Explore Tours</a>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <img src="/Content/images/slide2.jpg" class="d-block w-100 img-fluid" alt="Mountain adventure">
+                    <div class="hero-overlay">
+                        <h1>Adventure Awaits</h1>
+                        <p>Mountains, trekking & thrill</p>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <img src="/Content/images/slide3.jpg" class="d-block w-100 img-fluid" alt="City lights">
+                    <div class="hero-overlay">
+                        <h1>Discover Amazing Cities</h1>
+                        <p>Landmarks, culture & nightlife</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev" aria-label="Previous">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next" aria-label="Next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+
+    <section class="container mt-5">
+        <h2 class="text-center mt-4 mb-4">Popular Destinations</h2>
+
+        <div class="row g-4 destination-grid">
+            <div class="col-md-4">
+                <div class="destination-card">
+                    <img src="/Content/images/maldives.jpg" class="img-fluid" alt="Maldives beaches">
+                    <div class="destination-info">
+                        <h5>Maldives</h5>
+                        <p>Luxury beach paradise</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="destination-card">
+                    <img src="/Content/images/paris.jpg" class="img-fluid" alt="Paris landmarks">
+                    <div class="destination-info">
+                        <h5>Paris</h5>
+                        <p>City of love</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="destination-card">
+                    <img src="/Content/images/newyork.jpg" class="img-fluid" alt="New York skyline">
+                    <div class="destination-info">
+                        <h5>New York</h5>
+                        <p>The big apple</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container mt-5">
+        <h2 class="text-center section-title">Why Choose TripNest?</h2>
+
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <div class="feature-card card-ui text-center p-4">
+                    <h4>🔒 Secure Booking</h4>
+                    <p>Your payments & bookings are fully protected.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card card-ui text-center p-4">
+                    <h4>🏢 Trusted Agencies</h4>
+                    <p>Only verified agencies can publish tours.</p>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="feature-card card-ui text-center p-4">
+                    <h4>🌍 Best Destinations</h4>
+                    <p>Explore hand-picked destinations worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>

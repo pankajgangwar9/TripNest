@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Contact Us";
+}
+
+<div class="container mt-5">
+
+    <!-- Success Message -->
+    @if (ViewBag.Success != null)
+    {
+        <div class="alert alert-success text-center shadow-sm">
+            @ViewBag.Success
+        </div>
+    }
+
+    <!-- Page Header -->
+    <div class="text-center mb-5">
+        <h1 class="fw-bold">Contact TripNest 🌍</h1>
+        <p class="text-muted">We’re here to help you plan your perfect journey</p>
+    </div>
+
+    <div class="row">
+
+        <!-- Contact Info -->
+        <div class="col-md-5">
+            <div class="card p-4 shadow-sm mb-4 border-0 rounded-4">
+                <h4 class="fw-bold mb-3">📍 Our Office</h4>
+                <p>
+                    TripNest Travel Pvt. Ltd.<br />
+                    Kathmandu, Nepal<br />
+                    Near City Center
+                </p>
+
+                <h5 class="mt-4">📞 Phone</h5>
+                <p>+977 9800000000</p>
+
+                <h5>📧 Email</h5>
+                <p>
+                    Support: <a href="mailto:support@tripnest.com">support@tripnest.com</a><br />
+                    Marketing: <a href="mailto:marketing@tripnest.com">marketing@tripnest.com</a>
+                </p>
+
+                <h5>⏰ Working Hours</h5>
+                <p>Monday – Saturday: 9:00 AM – 7:00 PM</p>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="col-md-7">
+            <div class="card p-4 shadow-sm border-0 rounded-4">
+                <h4 class="fw-bold mb-3">✉ Send Us a Message</h4>
+
+                <form method="post" action="/Home/Contact">
+
+                    <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input name="Name" type="text" class="form-control" placeholder="Enter your name" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input name="Email" type="email" class="form-control" placeholder="Enter your email" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Subject</label>
+                        <input name="Subject" type="text" class="form-control" placeholder="Booking / Support / Feedback" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Message</label>
+                        <textarea name="Message" class="form-control" rows="5" placeholder="Write your message..." required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-main px-4">
+                        Send Message
+                    </button>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+</div>

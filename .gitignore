@@ -1,0 +1,36 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build folders
+bin/
+obj/
+
+# ASP.NET
+App_Data/*.mdf
+App_Data/*.ldf
+
+# NuGet
+packages/
+*.nupkg
+*.snupkg
+
+# Logs
+*.log
+
+# Rider & VS Code
+.idea/
+.vscode/
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# OS files
+.DS_Store
+
+# Publish folder
+PublishProfiles/
