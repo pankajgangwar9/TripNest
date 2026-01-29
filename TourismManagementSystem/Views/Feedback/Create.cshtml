@@ -1,0 +1,21 @@
+﻿@{
+    ViewBag.Title = "Feedback";
+}
+
+<div class="container mt-5">
+    <div class="col-md-6 mx-auto">
+        <div class="card p-4 shadow">
+            <h3 class="mb-3">💬 Feedback</h3>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <textarea name="message" class="form-control mb-3" rows="5"
+                          placeholder="Share your experience..."></textarea>
+
+                <button class="btn btn-main w-100">Submit Feedback</button>
+            }
+        </div>
+    </div>
+</div>

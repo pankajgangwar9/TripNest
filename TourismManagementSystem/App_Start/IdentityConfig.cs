@@ -108,23 +108,54 @@ namespace TourismManagementSystem
     }
     public static class RoleSeeder
     {
-        public static void SeedRoles()
+        public static void SeedRolesAndAdmin()
         {
             using (var context = new ApplicationDbContext())
             {
                 var roleManager = new RoleManager<IdentityRole>(
                     new RoleStore<IdentityRole>(context));
 
-                if (!roleManager.RoleExists("Admin"))
-                    roleManager.Create(new IdentityRole("Admin"));
+                var userManager = new UserManager<ApplicationUser>(
+                    new UserStore<ApplicationUser>(context));
 
-                if (!roleManager.RoleExists("Tourist"))
-                    roleManager.Create(new IdentityRole("Tourist"));
+                // -------- ROLES --------
+                string[] roles = { "Admin", "Tourist", "Agency" };
 
-                if (!roleManager.RoleExists("Agency"))
-                    roleManager.Create(new IdentityRole("Agency"));
+                foreach (var role in roles)
+                {
+                    if (!roleManager.RoleExists(role))
+                    {
+                        roleManager.Create(new IdentityRole(role));
+                    }
+                }
+
+                // -------- ADMIN USER --------
+                string adminEmail = "admin@tripnest.com";
+                string adminPassword = "Admin@123";
+
+                var adminUser = userManager.FindByEmail(adminEmail);
+
+                if (adminUser == null)
+                {
+                    adminUser = new ApplicationUser
+                    {
+                        UserName = adminEmail,
+                        Email = adminEmail,
+                        FirstName = "System",
+                        LastName = "Admin",
+                        EmailConfirmed = true
+                    };
+
+                    var result = userManager.Create(adminUser, adminPassword);
+
+                    if (result.Succeeded)
+                    {
+                        userManager.AddToRole(adminUser.Id, "Admin");
+                    }
+                }
             }
         }
     }
+
 
 }

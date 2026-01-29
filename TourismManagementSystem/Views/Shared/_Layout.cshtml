@@ -3,33 +3,29 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="~/Content/tripnest.css" rel="stylesheet" />
 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
     <title>@ViewBag.Title - TripNest</title>
 
     @Styles.Render("~/Content/css")
+    <link href="~/Content/tripnest.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
-
 </head>
-<body>
 
+<body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="container">
 
             @Html.ActionLink("TripNest", "Index", "Home", null, new { @class = "navbar-brand fw-bold" })
 
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse">
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
-
-                <!-- Left Menu -->
                 <ul class="navbar-nav flex-grow-1">
-
                     <li>@Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })</li>
@@ -39,42 +35,29 @@
                         <li>@Html.ActionLink("Browse Tours", "Index", "Tour", null, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("My Bookings", "MyBookings", "Booking", null, new { @class = "nav-link" })</li>
                     }
-
                     @if (User.IsInRole("Agency"))
                     {
                         <li>@Html.ActionLink("Dashboard", "Dashboard", "Agency", null, new { @class = "nav-link" })</li>
                         <li>@Html.ActionLink("My Tours", "MyTours", "TourPackage", null, new { @class = "nav-link" })</li>
-                    }
+}
 
                     @if (User.IsInRole("Admin"))
                     {
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Admin/Dashboard">Admin Panel</a>
-                        </li>
+                        <li>@Html.ActionLink("Dashboard", "Dashboard", "Admin", null, new { @class = "nav-link" })</li>
                     }
-
-
                 </ul>
 
-                <!-- Right Login Section -->
                 @Html.Partial("_LoginPartial")
-
             </div>
         </div>
     </nav>
 
-    <!-- MAIN CONTENT -->
     <div class="body-content">
         @RenderBody()
-        <hr />
-
-        <!-- FOOTER -->
         <footer class="text-center mt-4">
             <p>
-                &copy; @DateTime.Now.Year - <strong>TripNest</strong> | Developed by
-                <span class="fw-bold">Prapti Tripathi</span>,
-                <span class="fw-bold">Roshan Lama</span> &
-                <span class="fw-bold">Muhammad Ali</span>
+                &copy; @DateTime.Now.Year - <strong>TripNest</strong> |
+                Developed by Prapti Tripathi, Roshan Lama, Muhammad Ali & Ilyas Khan
             </p>
         </footer>
     </div>
@@ -82,6 +65,5 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-
 </body>
 </html>

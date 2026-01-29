@@ -154,7 +154,11 @@ namespace TourismManagementSystem.Controllers
                 var user = new ApplicationUser
                 {
                     UserName = model.Email,
-                    Email = model.Email
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    PhoneNumber = model.PhoneNumber,
+                    ProfileImage = "default.png"
                 };
 
                 var result = await UserManager.CreateAsync(user, model.Password);
@@ -164,14 +168,18 @@ namespace TourismManagementSystem.Controllers
                     // Assign selected role
                     await UserManager.AddToRoleAsync(user.Id, model.Role);
 
-                    await SignInManager.SignInAsync(user, false, false);
-
-                    // Redirect agencies to profile creation
-                    if (model.Role == "Agency")
+                    if (model.Role == "Tourist")
+                    {
+                        TempData["Success"] = "Account created successfully. Please login.";
+                        return RedirectToAction("Login", "Account");
+                    }
+                    else
+                    {
+                        // Redirect agencies to profile creation
                         return RedirectToAction("Create", "Agency");
-
-                    return RedirectToAction("Index", "Home");
+                    }
                 }
+
                 AddErrors(result);
             }
 

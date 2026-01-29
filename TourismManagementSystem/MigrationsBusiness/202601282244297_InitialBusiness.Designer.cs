@@ -13,7 +13,7 @@ namespace TourismManagementSystem.MigrationsBusiness
         
         string IMigrationMetadata.Id
         {
-            get { return "202601141053354_InitialBusiness"; }
+            get { return "202601282244297_InitialBusiness"; }
         }
         
         string IMigrationMetadata.Source

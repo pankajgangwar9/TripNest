@@ -1,25 +1,47 @@
 ﻿@model TourismManagementSystem.Models.Business.Booking
 
-<h2>Pay for @Model.TourPackage.Title</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
 
-<p><b>Amount:</b> ₹@Model.TourPackage.Price</p>
+        <div class="col-md-6">
 
-@using (Html.BeginForm("Pay", "Payment", FormMethod.Post))
-{
-    @Html.Hidden("bookingId", Model.BookingId)
+            <div class="payment-card">
 
-    <div class="form-group">
-        <label>Payment Method</label>
-        <select name="paymentMethod" class="form-control" required>
-            <option value="">-- Select Payment Method --</option>
-            <option value="UPI">UPI</option>
-            <option value="Card">Card</option>
-            <option value="NetBanking">Net Banking</option>
-        </select>
+                <!-- Header -->
+                <div class="payment-header">
+                    <h3>Pay for Tour</h3>
+                    <p class="tour-title">@Model.TourPackage.Title</p>
+                </div>
+
+                <!-- Amount -->
+                <div class="payment-amount">
+                    <span>Total Amount</span>
+                    <h2>₹@Model.TourPackage.Price</h2>
+                </div>
+
+                <!-- Payment Form -->
+                @using (Html.BeginForm("Pay", "Payment", FormMethod.Post))
+                {
+                    @Html.Hidden("bookingId", Model.BookingId)
+
+                    <div class="form-group mt-3">
+                        <label class="fw-bold">Payment Method</label>
+                        <select name="paymentMethod" class="form-control payment-select" required>
+                            <option value="">-- Select Payment Method --</option>
+                            <option value="UPI">UPI</option>
+                            <option value="Card">Card</option>
+                            <option value="NetBanking">Net Banking</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-success w-100 mt-4">
+                        Pay Now
+                    </button>
+                }
+
+            </div>
+
+        </div>
+
     </div>
-
-    <br />
-    <button type="submit" class="btn btn-success">
-        Pay Now
-    </button>
-}
+</div>

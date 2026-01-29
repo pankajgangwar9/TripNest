@@ -1,0 +1,50 @@
+﻿@model TourismManagementSystem.Models.Business.TourPackage
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Edit Tour Package";
+}
+
+<div class="container mt-5 mb-5">
+
+    <div class="card shadow-sm p-4 col-md-8 mx-auto">
+
+        <h2 class="text-center mb-4">Edit Tour Package</h2>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.TourPackageId)
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Title)
+                @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Description)
+                @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 4 })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.Price)
+                @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(m => m.DurationDays)
+                @Html.TextBoxFor(m => m.DurationDays, new { @class = "form-control" })
+            </div>
+
+            <div class="mb-4">
+                @Html.LabelFor(m => m.MaxGroupSize)
+                @Html.TextBoxFor(m => m.MaxGroupSize, new { @class = "form-control" })
+            </div>
+
+            <button type="submit" class="btn btn-main w-100">
+                Save Changes
+            </button>
+        }
+
+    </div>
+</div>

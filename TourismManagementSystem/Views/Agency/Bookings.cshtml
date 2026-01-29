@@ -1,36 +1,96 @@
 ﻿@model IEnumerable<TourismManagementSystem.Models.Business.Booking>
 
-<h2 class="page-title">Tour Bookings</h2>
+@{
+    ViewBag.Title = "Tour Bookings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
-<table class="table table-hover shadow">
-    <tr class="table-dark">
-        <th>Tour</th>
-        <th>Tourist</th>
-        <th>Date</th>
-        <th>Status</th>
-        <th>Action</th>
-    </tr>
+<div class="container mt-4">
 
-    @foreach (var b in Model)
-    {
-        <tr>
-            <td>@b.TourPackage.Title</td>
-            <td>@b.UserId</td>
-            <td>@b.BookingDate.ToShortDateString()</td>
+    <!-- PAGE HEADER -->
+    <div class="booking-header">
+        <div>
+            <h2>Tour Bookings</h2>
+            <p>Manage all customer bookings for your tours</p>
+        </div>
+        <img src="https://cdn-icons-png.flaticon.com/512/942/942748.png" alt="Bookings">
+    </div>
 
-            <td>
-                <span class="status @b.Status.ToString().ToLower()">
-                    @b.Status
-                </span>
-            </td>
+    <!-- BOOKINGS TABLE -->
+    <div class="card booking-table-card mt-4">
+        <div class="table-responsive">
+            <table class="table align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Tour</th>
+                        <th>Tourist</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th class="text-end">Action</th>
+                    </tr>
+                </thead>
 
-            <td>
-                @if (b.Status == TourismManagementSystem.Models.Business.BookingStatus.Pending)
-                {
-                    <a href="/Agency/ApproveBooking/@b.BookingId" class="btn btn-success btn-sm">Approve</a>
-                    <a href="/Agency/CancelBooking/@b.BookingId" class="btn btn-danger btn-sm">Reject</a>
-                }
-            </td>
-        </tr>
-    }
-</table>
+                <tbody>
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center text-muted py-4">
+                                No bookings found
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var b in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="tour-cell">
+                                        <img src="https://source.unsplash.com/100x100/?travel,nature" />
+                                        <span>@b.TourPackage.Title</span>
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <span class="tourist-id">
+                                        @b.UserId
+                                    </span>
+                                </td>
+
+                                <td>
+                                    @b.BookingDate.ToShortDateString()
+                                </td>
+
+                                <td>
+                                    <span class="status-badge @b.Status.ToString().ToLower()">
+                                        @b.Status
+                                    </span>
+                                </td>
+
+                                <td class="text-end">
+                                    @if (b.Status == TourismManagementSystem.Models.Business.BookingStatus.Pending)
+                                    {
+                                        <a href="/Agency/ApproveBooking/@b.BookingId"
+                                           class="btn btn-success btn-sm me-1">
+                                            Approve
+                                        </a>
+
+                                        <a href="/Agency/CancelBooking/@b.BookingId"
+                                           class="btn btn-danger btn-sm">
+                                            Reject
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">—</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

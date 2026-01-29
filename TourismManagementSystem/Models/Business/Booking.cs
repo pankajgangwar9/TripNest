@@ -23,6 +23,8 @@ namespace TourismManagementSystem.Models.Business
 
         public virtual Payment Payment { get; set; }
         public virtual Feedback Feedback { get; set; }
+        public virtual Review Review { get; set; }
+
     }
 
     public enum BookingStatus

@@ -1,25 +1,52 @@
 ﻿@model IEnumerable<TourismManagementSystem.Models.Business.Booking>
 
-<h2 class="page-title">My Bookings</h2>
+<h2 class="page-title mb-4">My Bookings</h2>
 
-<div class="booking-grid">
-    @foreach (var b in Model)
-    {
-        <div class="booking-card">
-            <h5>@b.TourPackage.Title</h5>
-            <p><b>Date:</b> @b.BookingDate.ToShortDateString()</p>
-            <p><b>Price:</b> ₹@b.TourPackage.Price</p>
+<div class="container">
+    <div class="row booking-grid">
 
-            <span class="status @b.Status.ToString().ToLower()">
-                @b.Status
-            </span>
+        @foreach (var b in Model)
+        {
+            <div class="col-md-6 col-lg-4 mb-4">
 
-            @if (b.Status == TourismManagementSystem.Models.Business.BookingStatus.Pending)
-            {
-                <a href="/Payment/Pay?bookingId=@b.BookingId" class="btn btn-success mt-2">
-                    Pay Now
-                </a>
-            }
-        </div>
-    }
+                <div class="booking-card">
+
+                    <!-- Header -->
+                    <div class="booking-header">
+                        <h5>@b.TourPackage.Title</h5>
+
+                        <span class="status-badge @b.Status.ToString().ToLower()">
+                            @b.Status
+                        </span>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="booking-body">
+                        <p>
+                            <strong>Date:</strong>
+                            @b.BookingDate.ToShortDateString()
+                        </p>
+
+                        <p class="price">
+                            ₹@b.TourPackage.Price
+                        </p>
+                    </div>
+
+                    <!-- Footer -->
+                    @if (b.Status == TourismManagementSystem.Models.Business.BookingStatus.Pending)
+                    {
+                        <div class="booking-footer">
+                            <a href="/Payment/Pay?bookingId=@b.BookingId"
+                               class="btn btn-success w-100">
+                                Pay Now
+                            </a>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        }
+
+    </div>
 </div>

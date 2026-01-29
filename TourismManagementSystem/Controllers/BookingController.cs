@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using TourismManagementSystem.Models.Business;
+using System.Data.Entity;
 
 namespace TourismManagementSystem.Controllers
 {
@@ -13,7 +14,10 @@ namespace TourismManagementSystem.Controllers
 
         public ActionResult Create(int id)
         {
-            var tour = db.TourPackages.Find(id);
+            var tour = db.TourPackages
+             .Include(t => t.Agency)
+             .Include(t => t.Reviews)
+             .FirstOrDefault(t => t.TourPackageId == id);
             return View(tour);
         }
 

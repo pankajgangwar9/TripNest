@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TourismManagementSystem.Models.Business.Booking>
+﻿@model IEnumerable<TourismManagementSystem.Models.AdminViewModels.AdminBookingViewModel>
 @using TourismManagementSystem.Models.Business
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -11,7 +11,8 @@
         <thead class="table-dark">
             <tr>
                 <th>Tour</th>
-                <th>User</th>
+                <th>User ID</th>
+                <th>Username</th>
                 <th>Date</th>
                 <th>Status</th>
             </tr>
@@ -21,8 +22,9 @@
             @foreach (var b in Model)
             {
                 <tr>
-                    <td>@b.TourPackage.Title</td>
+                    <td>@b.TourTitle</td>
                     <td>@b.UserId</td>
+                    <td>@b.UserName</td>
                     <td>@b.BookingDate.ToShortDateString()</td>
                     <td>
                         @if (b.Status == BookingStatus.Pending)

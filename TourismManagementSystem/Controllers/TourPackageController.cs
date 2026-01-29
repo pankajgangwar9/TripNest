@@ -2,13 +2,16 @@
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using TourismManagementSystem.Models.Business;
+using TourismManagementSystem.Models.ViewModels;
 
 namespace TourismManagementSystem.Controllers
 {
     [Authorize(Roles = "Agency")]
     public class TourPackageController : Controller
     {
-        TourismDbContext db = new TourismDbContext();
+        private TourismDbContext db = new TourismDbContext();
+
+        // ================= CREATE =================
 
         public ActionResult Create()
         {
@@ -22,18 +25,14 @@ namespace TourismManagementSystem.Controllers
             var agency = db.Agencies.FirstOrDefault(a => a.UserId == userId);
 
             if (agency == null)
-            {
                 return RedirectToAction("Create", "Agency");
-            }
 
-            // 🔒 BLOCK unapproved agencies
             if (!agency.IsApproved)
             {
                 ViewBag.Errors = new[] { "Your agency is not approved yet by admin." };
                 return View(tour);
             }
 
-            // Assign agency to this tour
             tour.AgencyId = agency.AgencyId;
 
             if (ModelState.IsValid)
@@ -46,25 +45,116 @@ namespace TourismManagementSystem.Controllers
             return View(tour);
         }
 
+        // ================= MY TOURS =================
 
         public ActionResult MyTours()
         {
             var userId = User.Identity.GetUserId();
-
-            // Step 1: Get Agency first
             var agency = db.Agencies.FirstOrDefault(a => a.UserId == userId);
 
             if (agency == null)
                 return RedirectToAction("Create", "Agency");
 
-            // Step 2: Use AgencyId (NOT navigation property)
-            var tours = db.TourPackages
-                          .Where(t => t.AgencyId == agency.AgencyId)
-                          .ToList();
+            var bookingCounts = db.Bookings
+                .GroupBy(b => b.TourPackageId)
+                .Select(g => new
+                {
+                    TourPackageId = g.Key,
+                    Count = g.Count()
+                })
+                .ToList();
 
-            return View(tours);
+            var model = db.TourPackages
+                .Where(t => t.AgencyId == agency.AgencyId)
+                .ToList()
+                .Select(t => new TourWithBookingCountVM
+                {
+                    TourPackageId = t.TourPackageId,
+                    Title = t.Title,
+                    Price = t.Price,
+                    DurationDays = t.DurationDays,
+                    MaxGroupSize = t.MaxGroupSize,
+                    BookingCount = bookingCounts
+                        .FirstOrDefault(b => b.TourPackageId == t.TourPackageId)?.Count ?? 0
+                })
+                .ToList();
+
+            return View(model);
         }
 
+        // ================= EDIT =================
 
+        public ActionResult Edit(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            var agency = db.Agencies.FirstOrDefault(a => a.UserId == userId);
+
+            if (agency == null)
+                return RedirectToAction("Create", "Agency");
+
+            var tour = db.TourPackages
+                .FirstOrDefault(t => t.TourPackageId == id && t.AgencyId == agency.AgencyId);
+
+            if (tour == null)
+                return HttpNotFound();
+
+            return View(tour);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(TourPackage tour)
+        {
+            var userId = User.Identity.GetUserId();
+            var agency = db.Agencies.FirstOrDefault(a => a.UserId == userId);
+
+            if (agency == null)
+                return RedirectToAction("Create", "Agency");
+
+            var existingTour = db.TourPackages
+                .FirstOrDefault(t => t.TourPackageId == tour.TourPackageId
+                                  && t.AgencyId == agency.AgencyId);
+
+            if (existingTour == null)
+                return HttpNotFound();
+
+            if (ModelState.IsValid)
+            {
+                existingTour.Title = tour.Title;
+                existingTour.Description = tour.Description;
+                existingTour.Price = tour.Price;
+                existingTour.DurationDays = tour.DurationDays;
+                existingTour.MaxGroupSize = tour.MaxGroupSize;
+
+                db.SaveChanges();
+                return RedirectToAction("MyTours");
+            }
+
+            return View(tour);
+        }
+
+        // ================= DELETE =================
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            var agency = db.Agencies.FirstOrDefault(a => a.UserId == userId);
+
+            if (agency == null)
+                return RedirectToAction("Create", "Agency");
+
+            var tour = db.TourPackages
+                .FirstOrDefault(t => t.TourPackageId == id && t.AgencyId == agency.AgencyId);
+
+            if (tour == null)
+                return HttpNotFound();
+
+            db.TourPackages.Remove(tour);
+            db.SaveChanges();
+
+            return RedirectToAction("MyTours");
+        }
     }
 }

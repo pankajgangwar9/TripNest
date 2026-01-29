@@ -1,23 +1,112 @@
-﻿@model IEnumerable<TourismManagementSystem.Models.Business.TourPackage>
+﻿@*@model IEnumerable<TourismManagementSystem.Models.Business.TourPackage>*@
+@model IEnumerable<TourismManagementSystem.Models.ViewModels.TourWithBookingCountVM>
+
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "My Tour Packages";
 }
 
-<h2>My Tour Packages</h2>
+<div class="container mt-5 mb-5">
 
-<table>
-    <tr>
-        <th>Title</th>
-        <th>Price</th>
-        <th>Duration</th>
-    </tr>
+    <!-- PAGE HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="page-title mb-1">My Tour Packages</h2>
+            <p class="text-muted">Manage and review your published tours</p>
+        </div>
 
-    @foreach (var t in Model)
-    {
-        <tr>
-            <td>@t.Title</td>
-            <td>@t.Price</td>
-            <td>@t.DurationDays days</td>
-        </tr>
-    }
-</table>
+        <a href="/TourPackage/Create" class="btn btn-main">
+            + Create New Tour
+        </a>
+    </div>
+
+    <!-- TABLE CARD -->
+    <div class="card shadow-sm tour-table-card">
+
+        <table class="table table-hover align-middle mb-0">
+            <thead>
+                <tr>
+                    <th>Tour Title</th>
+                    <th>Price</th>
+                    <th>Duration</th>
+                    <th>Group Size</th>
+                    <th>Bookings</th>
+
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+            <tbody>
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="6" class="text-center text-muted py-5">
+                            No tour packages created yet.
+                        </td>
+                    </tr>
+                }
+                else
+                {
+                    foreach (var t in Model)
+                    {
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center gap-3">
+                                    <img src="https://source.unsplash.com/80x60/?travel,@t.Title"
+                                         class="tour-thumb" />
+                                    <strong>@t.Title</strong>
+                                </div>
+                            </td>
+
+                            <td class="fw-bold text-primary">
+                                ₹@t.Price
+                            </td>
+
+                            <td>
+                                ⏳ @t.DurationDays days
+                            </td>
+
+                            <td>
+                                👥 @t.MaxGroupSize
+                            </td>
+
+                            <td>
+                                <span class="badge bg-info">
+                                    @t.BookingCount bookings
+                                </span>
+                            </td>
+
+                            <td class="d-flex gap-2">
+                                @*<a href="/Tour/Details/@t.TourPackageId"
+                                   class="btn btn-outline-primary btn-sm">
+                                    👁 View
+                                </a>*@
+
+                                <a href="/TourPackage/Edit/@t.TourPackageId"
+                                   class="btn btn-warning btn-sm">
+                                    Edit
+                                </a>
+
+                                @using (Html.BeginForm("Delete", "TourPackage", FormMethod.Post, new { onsubmit = "return confirm('Are you sure you want to delete this tour?');" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.Hidden("id", t.TourPackageId)
+
+                                    <button type="submit" class="btn btn-danger btn-sm">
+                                        🗑 Delete
+                                    </button>
+                                }
+
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

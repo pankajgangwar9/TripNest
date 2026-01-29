@@ -1,0 +1,27 @@
+﻿<div class="container mt-5">
+    <div class="col-md-6 mx-auto">
+        <div class="card p-4 shadow">
+            <h3>⭐ Write a Review</h3>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.Hidden("tourId", (int)ViewBag.TourId)
+
+                <label>Rating</label>
+                <select name="rating" class="form-control mb-3">
+                    <option value="5">★★★★★</option>
+                    <option value="4">★★★★</option>
+                    <option value="3">★★★</option>
+                    <option value="2">★★</option>
+                    <option value="1">★</option>
+                </select>
+
+                <textarea name="comment" class="form-control mb-3"
+                          placeholder="Your experience..."></textarea>
+
+                <button class="btn btn-main w-100">Submit Review</button>
+            }
+        </div>
+    </div>
+</div>

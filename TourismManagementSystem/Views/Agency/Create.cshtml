@@ -1,28 +1,58 @@
 ﻿@model TourismManagementSystem.Models.Business.Agency
+
 @{
-    ViewBag.Title = "Create Agency";
+    ViewBag.Title = "Create Agency Profile";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create Agency Profile</h2>
+<div class="container mt-5">
 
-@using (Html.BeginForm())
-{
-    <div>
-        @Html.LabelFor(m => m.AgencyName)
-        @Html.TextBoxFor(m => m.AgencyName, new { @class = "form-control" })
+    <!-- PAGE CARD -->
+    <div class="agency-form-card mx-auto">
+
+        <!-- HEADER -->
+        <div class="agency-form-header text-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Agency">
+            <h2>Create Agency Profile</h2>
+            <p>Set up your agency to start publishing tour packages</p>
+        </div>
+
+        <!-- FORM -->
+        @using (Html.BeginForm())
+        {
+            <div class="form-group mb-3">
+                @Html.LabelFor(m => m.AgencyName, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.AgencyName, new
+                {
+                    @class = "form-control form-control-lg",
+                    placeholder = "Enter agency name"
+                })
+            </div>
+
+            <div class="form-group mb-3">
+                @Html.LabelFor(m => m.Description, new { @class = "form-label" })
+                @Html.TextAreaFor(m => m.Description, new
+                {
+                    @class = "form-control",
+                    rows = 4,
+                    placeholder = "Describe your agency and services"
+                })
+            </div>
+
+            <div class="form-group mb-4">
+                @Html.LabelFor(m => m.ContactNumber, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.ContactNumber, new
+                {
+                    @class = "form-control form-control-lg",
+                    placeholder = "Enter contact number"
+                })
+            </div>
+
+            <!-- ACTION -->
+            <button type="submit" class="btn btn-primary btn-lg w-100">
+                Create Agency
+            </button>
+        }
     </div>
 
-    <div>
-        @Html.LabelFor(m => m.Description)
-        @Html.TextAreaFor(m => m.Description, new { @class = "form-control" })
-    </div>
-
-    <div>
-        @Html.LabelFor(m => m.ContactNumber)
-        @Html.TextBoxFor(m => m.ContactNumber, new { @class = "form-control" })
-    </div>
-
-    <br />
-    <button type="submit" class="btn btn-primary">Create Agency</button>
-}
+</div>

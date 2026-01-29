@@ -172,7 +172,9 @@
     <Compile Include="Controllers\AgencyController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
     <Compile Include="Controllers\Controller\AdminController.cs" />
+    <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\TourController.cs" />
     <Compile Include="Controllers\TourPackageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -180,68 +182,31 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="MigrationsBusiness\202601141053354_InitialBusiness.cs" />
-    <Compile Include="MigrationsBusiness\202601141053354_InitialBusiness.Designer.cs">
-      <DependentUpon>202601141053354_InitialBusiness.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MigrationsBusiness\202601141315161_AddBookings.cs" />
-    <Compile Include="MigrationsBusiness\202601141315161_AddBookings.Designer.cs">
-      <DependentUpon>202601141315161_AddBookings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MigrationsBusiness\202601141334378_AddPayments.cs" />
-    <Compile Include="MigrationsBusiness\202601141334378_AddPayments.Designer.cs">
-      <DependentUpon>202601141334378_AddPayments.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MigrationsBusiness\202601141904467_AddAgencyApproval.cs" />
-    <Compile Include="MigrationsBusiness\202601141904467_AddAgencyApproval.Designer.cs">
-      <DependentUpon>202601141904467_AddAgencyApproval.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MigrationsBusiness\202601142115338_AddContactMessages.cs" />
-    <Compile Include="MigrationsBusiness\202601142115338_AddContactMessages.Designer.cs">
-      <DependentUpon>202601142115338_AddContactMessages.cs</DependentUpon>
+    <Compile Include="MigrationsBusiness\202601282244297_InitialBusiness.cs" />
+    <Compile Include="MigrationsBusiness\202601282244297_InitialBusiness.Designer.cs">
+      <DependentUpon>202601282244297_InitialBusiness.cs</DependentUpon>
     </Compile>
     <Compile Include="MigrationsBusiness\Configuration.cs" />
-    <Compile Include="Migrations\202601140610599_InitialBusinessSchema.cs" />
-    <Compile Include="Migrations\202601140610599_InitialBusinessSchema.Designer.cs">
-      <DependentUpon>202601140610599_InitialBusinessSchema.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202601140647243_IdentityUpdated.cs" />
-    <Compile Include="Migrations\202601140647243_IdentityUpdated.Designer.cs">
-      <DependentUpon>202601140647243_IdentityUpdated.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202601140659392_IdentityProfileImage.cs" />
-    <Compile Include="Migrations\202601140659392_IdentityProfileImage.Designer.cs">
-      <DependentUpon>202601140659392_IdentityProfileImage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202601140718074_IdentityBaseline.cs" />
-    <Compile Include="Migrations\202601140718074_IdentityBaseline.Designer.cs">
-      <DependentUpon>202601140718074_IdentityBaseline.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202601140718431_AddProfileImage.cs" />
-    <Compile Include="Migrations\202601140718431_AddProfileImage.Designer.cs">
-      <DependentUpon>202601140718431_AddProfileImage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202601140726564_AddProfileImageColumn.cs" />
-    <Compile Include="Migrations\202601140726564_AddProfileImageColumn.Designer.cs">
-      <DependentUpon>202601140726564_AddProfileImageColumn.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202601141350022_FixBookingStatusEnum.cs" />
-    <Compile Include="Migrations\202601141350022_FixBookingStatusEnum.Designer.cs">
-      <DependentUpon>202601141350022_FixBookingStatusEnum.cs</DependentUpon>
+    <Compile Include="Migrations\202601282231301_InitialIdentity.cs" />
+    <Compile Include="Migrations\202601282231301_InitialIdentity.Designer.cs">
+      <DependentUpon>202601282231301_InitialIdentity.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Migrations\IdentityConfiguration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdminViewModels.cs" />
     <Compile Include="Models\Business\Agency.cs" />
     <Compile Include="Models\Business\Booking.cs" />
     <Compile Include="Models\Business\ContactMessage.cs" />
     <Compile Include="Models\Business\Feedback.cs" />
     <Compile Include="Models\Business\Payment.cs" />
+    <Compile Include="Models\Business\Review.cs" />
     <Compile Include="Models\Business\TourImage.cs" />
     <Compile Include="Models\Business\TourismDbContext.cs" />
     <Compile Include="Models\Business\TourPackage.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ViewModels\TourWithBookingCountVM.cs" />
+    <Compile Include="Models\ViewModels\AdminBookingViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -339,6 +304,10 @@
     <Content Include="Views\Admin\Agencies.cshtml" />
     <Content Include="Views\Admin\Bookings.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\EditUser.cshtml" />
+    <Content Include="Views\TourPackage\Edit.cshtml" />
+    <Content Include="Views\Feedback\Create.cshtml" />
+    <Content Include="Views\Review\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -372,41 +341,11 @@
     <Content Include="Scripts\jquery-3.7.0.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MigrationsBusiness\202601141053354_InitialBusiness.resx">
-      <DependentUpon>202601141053354_InitialBusiness.cs</DependentUpon>
+    <EmbeddedResource Include="MigrationsBusiness\202601282244297_InitialBusiness.resx">
+      <DependentUpon>202601282244297_InitialBusiness.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MigrationsBusiness\202601141315161_AddBookings.resx">
-      <DependentUpon>202601141315161_AddBookings.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MigrationsBusiness\202601141334378_AddPayments.resx">
-      <DependentUpon>202601141334378_AddPayments.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MigrationsBusiness\202601141904467_AddAgencyApproval.resx">
-      <DependentUpon>202601141904467_AddAgencyApproval.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MigrationsBusiness\202601142115338_AddContactMessages.resx">
-      <DependentUpon>202601142115338_AddContactMessages.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202601140610599_InitialBusinessSchema.resx">
-      <DependentUpon>202601140610599_InitialBusinessSchema.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202601140647243_IdentityUpdated.resx">
-      <DependentUpon>202601140647243_IdentityUpdated.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202601140659392_IdentityProfileImage.resx">
-      <DependentUpon>202601140659392_IdentityProfileImage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202601140718074_IdentityBaseline.resx">
-      <DependentUpon>202601140718074_IdentityBaseline.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202601140718431_AddProfileImage.resx">
-      <DependentUpon>202601140718431_AddProfileImage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202601140726564_AddProfileImageColumn.resx">
-      <DependentUpon>202601140726564_AddProfileImageColumn.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202601141350022_FixBookingStatusEnum.resx">
-      <DependentUpon>202601141350022_FixBookingStatusEnum.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202601282231301_InitialIdentity.resx">
+      <DependentUpon>202601282231301_InitialIdentity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,46 +1,74 @@
 ﻿@model IEnumerable<TourismManagementSystem.Models.Business.TourPackage>
 
-<h2 class="page-title">Browse Tours</h2>
+<div class="container mt-4">
 
-<div class="filter-bar">
-    <input type="text" placeholder="Search destination..." class="form-control filter-input">
-    <select class="form-control filter-input">
-        <option>Price</option>
-        <option>Low to High</option>
-        <option>High to Low</option>
-    </select>
-    <select class="form-control filter-input">
-        <option>Duration</option>
-        <option>1–3 Days</option>
-        <option>4–7 Days</option>
-        <option>7+ Days</option>
-    </select>
-</div>
+    <h2 class="page-title">Browse Tours</h2>
 
-<div class="tour-grid">
-    @foreach (var t in Model)
-    {
-        <div class="tour-card">
-            <img src="@($"https://source.unsplash.com/400x300/?travel,{Uri.EscapeDataString(t.Title)}")"
-                 alt="@t.Title"
-                 class="img-fluid" />
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <input type="text" placeholder="Search destination..." class="form-control filter-input">
+
+        <select class="form-control filter-input">
+            <option>Price</option>
+            <option>Low to High</option>
+            <option>High to Low</option>
+        </select>
+
+        <select class="form-control filter-input">
+            <option>Duration</option>
+            <option>1–3 Days</option>
+            <option>4–7 Days</option>
+            <option>7+ Days</option>
+        </select>
+    </div>
+
+    <!-- Tour Cards -->
+    <div class="tour-grid">
+        @foreach (var t in Model)
+        {
+            <div class="tour-card">
+
+                <!-- Image -->
+                <img src="@($"https://source.unsplash.com/400x300/?travel,{Uri.EscapeDataString(t.Title)}")"
+                     alt="@t.Title"
+                     class="tour-image" />
+
+                <!-- Body -->
+                <div class="tour-body">
+
+                    <h5 class="tour-title">@t.Title</h5>
+
+                    <p class="tour-desc">
+                        @(t.Description?.Length > 90
+                            ? t.Description.Substring(0, 90) + "..."
+                            : t.Description)
+                    </p>
+
+                    <div class="tour-meta">
+                        <span>🏢 @t.Agency.AgencyName</span>
+                        <span>⏳ @t.DurationDays days</span>
+                    </div>
+
+                    <div class="tour-footer">
+                        <span class="price">₹@t.Price</span>
+
+                        <div class="d-flex gap-2">
+                            <a href="/Tour/Details/@t.TourPackageId"
+                               class="btn btn-outline-secondary btn-sm">
+                                View Details
+                            </a>
+
+                            <a href="/Booking/Create/@t.TourPackageId"
+                               class="btn btn-main btn-sm">
+                                Book Now
+                            </a>
+                        </div>
+                    </div>
 
 
-
-            <div class="tour-body">
-                <h5>@t.Title</h5>
-                <p>@t.Description</p>
-
-                <div class="tour-meta">
-                    <span>🏢 @t.Agency.AgencyName</span>
-                    <span>⏳ @t.DurationDays days</span>
-                </div>
-
-                <div class="tour-footer">
-                    <span class="price">₹@t.Price</span>
-                    <a href="/Booking/Create/@t.TourPackageId" class="btn btn-primary">Book</a>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
+
 </div>

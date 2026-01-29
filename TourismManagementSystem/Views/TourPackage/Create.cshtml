@@ -1,51 +1,89 @@
 ﻿@model TourismManagementSystem.Models.Business.TourPackage
+
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Title = "Create Tour";
+    ViewBag.Title = "Create Tour Package";
 }
 
-<div class="card-ui col-md-8 mx-auto mt-5">
+<div class="container mt-5 mb-5">
 
-    <h2 class="text-center mb-4">Create Tour Package</h2>
+    <!-- MAIN CARD -->
+    <div class="tour-create-card mx-auto">
 
-    @if (ViewBag.Errors != null)
-    {
-        <ul class="text-danger">
-            @foreach (string err in ViewBag.Errors)
-            {
-                <li>@err</li>
-            }
-        </ul>
-    }
-
-    @using (Html.BeginForm())
-    {
-        <div class="mb-3">
-            @Html.LabelFor(m => m.Title)
-            @Html.TextBoxFor(m => m.Title, new { @class = "form-control" })
+        <!-- HEADER -->
+        <div class="tour-create-header text-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Tour">
+            <h2>Create Tour Package</h2>
+            <p>Add a new tour and start receiving bookings</p>
         </div>
 
-        <div class="mb-3">
-            @Html.LabelFor(m => m.Description)
-            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", rows = 4 })
-        </div>
+        <!-- ERROR MESSAGES (UNCHANGED LOGIC) -->
+        @if (ViewBag.Errors != null)
+        {
+            <ul class="alert alert-danger">
+                @foreach (string err in ViewBag.Errors)
+                {
+                    <li>@err</li>
+                }
+            </ul>
+        }
 
-        <div class="mb-3">
-            @Html.LabelFor(m => m.Price)
-            @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
-        </div>
+        <!-- FORM (UNCHANGED LOGIC) -->
+        @using (Html.BeginForm())
+        {
+            <div class="form-group mb-4">
+                @Html.LabelFor(m => m.Title, new { @class = "form-label" })
+                @Html.TextBoxFor(m => m.Title, new
+                {
+                    @class = "form-control form-control-lg",
+                    placeholder = "e.g. Himalayan Adventure Tour"
+                })
+            </div>
 
-        <div class="mb-3">
-            @Html.LabelFor(m => m.DurationDays)
-            @Html.TextBoxFor(m => m.DurationDays, new { @class = "form-control" })
-        </div>
+            <div class="form-group mb-4">
+                @Html.LabelFor(m => m.Description, new { @class = "form-label" })
+                @Html.TextAreaFor(m => m.Description, new
+                {
+                    @class = "form-control",
+                    rows = 4,
+                    placeholder = "Describe the tour experience, activities, and highlights"
+                })
+            </div>
 
-        <div class="mb-3">
-            @Html.LabelFor(m => m.MaxGroupSize)
-            @Html.TextBoxFor(m => m.MaxGroupSize, new { @class = "form-control" })
-        </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    @Html.LabelFor(m => m.Price, new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.Price, new
+                    {
+                        @class = "form-control form-control-lg",
+                        placeholder = "₹ Price"
+                    })
+                </div>
 
-        <button type="submit" class="btn btn-main w-100">Create Tour</button>
-    }
+                <div class="col-md-4 mb-4">
+                    @Html.LabelFor(m => m.DurationDays, new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.DurationDays, new
+                    {
+                        @class = "form-control form-control-lg",
+                        placeholder = "Days"
+                    })
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    @Html.LabelFor(m => m.MaxGroupSize, new { @class = "form-label" })
+                    @Html.TextBoxFor(m => m.MaxGroupSize, new
+                    {
+                        @class = "form-control form-control-lg",
+                        placeholder = "People"
+                    })
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-main btn-lg w-100">
+                Create Tour Package
+            </button>
+        }
+
+    </div>
 
 </div>

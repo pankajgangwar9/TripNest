@@ -1,19 +1,23 @@
 ﻿namespace TourismManagementSystem.Migrations
 {
+    using System;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using TourismManagementSystem.Models;
+    using System.Linq;
 
-    internal sealed class Configuration
-        : DbMigrationsConfiguration<ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<TourismManagementSystem.Models.ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(ApplicationDbContext context)
+        protected override void Seed(TourismManagementSystem.Models.ApplicationDbContext context)
         {
-            // Identity data can be seeded here if needed
+            //  This method will be called after migrating to the latest version.
+
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
+            //  to avoid creating duplicate seed data.
         }
     }
 }

@@ -1,27 +1,64 @@
 ﻿@model TourismManagementSystem.Models.Business.Agency
 
-@if (Model == null)
-{
-    <h3>No agency profile found.</h3>
-    <a href="/Agency/Create" class="btn btn-primary">Create Agency Profile</a>
-    return;
-}
-
 @{
     ViewBag.Title = "Agency Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.AgencyName</h2>
+@if (Model == null)
+{
+    <div class="container mt-5 text-center">
+        <h3>No agency profile found</h3>
+        <a href="/Agency/Create" class="btn btn-primary mt-3">
+            Create Agency Profile
+        </a>
+    </div>
+    return;
+}
 
-<p><b>Description:</b> @Model.Description</p>
-<p><b>Contact:</b> @Model.ContactNumber</p>
+<div class="container mt-4">
 
-<hr />
+    <!-- AGENCY HEADER -->
+    <div class="agency-header">
+        <div class="agency-info">
+            <img src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="Agency Logo" />
+            <div>
+                <h2>@Model.AgencyName</h2>
+                <p>@Model.Description</p>
+                <span class="agency-contact">
+                    📞 @Model.ContactNumber
+                </span>
+            </div>
+        </div>
+    </div>
 
-<a href="/TourPackage/Create" class="btn btn-success">
-    Create Tour Package
-</a>
-<a href="/Agency/Bookings" class="btn btn-primary">
-    View Bookings
-</a>
+    <!-- DASHBOARD ACTION CARDS -->
+    <div class="row mt-4">
+
+        <!-- CREATE TOUR -->
+        <div class="col-md-6 mb-4">
+            <div class="dashboard-card green">
+                <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" />
+                <h4>Create Tour Package</h4>
+                <p>Add new travel experiences for tourists.</p>
+                <a href="/TourPackage/Create" class="btn btn-light">
+                    Create Tour
+                </a>
+            </div>
+        </div>
+
+        <!-- VIEW BOOKINGS -->
+        <div class="col-md-6 mb-4">
+            <div class="dashboard-card blue">
+                <img src="https://cdn-icons-png.flaticon.com/512/942/942748.png" />
+                <h4>View Bookings</h4>
+                <p>Manage and track customer bookings.</p>
+                <a href="/Agency/Bookings" class="btn btn-light">
+                    View Bookings
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</div>

@@ -7,13 +7,13 @@ namespace TourismManagementSystem.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class IdentityBaseline : IMigrationMetadata
+    public sealed partial class InitialIdentity : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(IdentityBaseline));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialIdentity));
         
         string IMigrationMetadata.Id
         {
-            get { return "202601140718074_IdentityBaseline"; }
+            get { return "202601282231301_InitialIdentity"; }
         }
         
         string IMigrationMetadata.Source
